@@ -1,0 +1,77 @@
+// Common CSS
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary { display: block; }
+body, ol, ul, li, div, p, span, form, h1, h2, h3, h4, h5, h6, table, thead, th, tbody, tr, td, img, input, textarea, dd, dt, dl { word-wrap: break-word; outline: none; padding: 0; margin: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+textarea { overflow: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+h1, h2, h3, h4, h5, h6, p, ul, ol, dd, dt, dl { -webkit-margin-before: 0; -webkit-margin-after: 0; -webkit-margin-start: 0; -webkit-margin-end: 0; }
+a img, img { border: none; outline: none; display: block; width: auto; max-width: 100%; user-select: none }
+a { cursor: poLexend; text-decoration: none; outline: 0; }
+input { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: "Lexend"}
+html { font-size: 62.5%; }
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; -ms-font-smoothing: antialiased; background-color: #fff; font-family: "Lexend"; font-size: 12px; }
+::-moz-selection { text-shadow: none; background: $w_title; color: $w_white; }
+::selection { text-shadow: none; background: $w_title; color: $w_white; }
+.clear { clear: both; height: 0; overflow: hidden; width: auto; display: block; float: none !important; }
+ul, menu, dir { margin: 0; padding: 0; display: block; list-style-type: none; -webkit-margin-before: 0; -webkit-margin-after: 0; -webkit-margin-start: 0; -webkit-margin-end: 0; -webkit-padding-start: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; &:after, &:before { box-sizing: border-box; } }
+li:last-child, p:last-child { margin-bottom: 0 !important; }
+/* input elements */
+::-webkit-input-placeholder, ::-moz-placeholder, :-ms-input-placeholder, :-moz-placeholder { font-family: "Lexend"; color: $w_title; }
+// html, body { max-width: 100vw; overflow-x: hidden; }
+html { -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: sans-serif; scroll-behavior: smooth; height: 100%; }
+
+// Common Title and Link Css
+h1 {
+  @include defaultFontStyle(bold, 36, 42, $w_title);
+  -moz-font-smoothing: none;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+}
+
+h2 {
+  @include defaultFontStyle(bold, 24, 28, $w_title);
+  -moz-font-smoothing: none;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+}
+
+h3 {
+  @include defaultFontStyle(600, 20, 24, $w_title);
+  -moz-font-smoothing: none;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+}
+
+h4 {
+  @include defaultFontStyle(600, 20, 24, $w_title);
+  -moz-font-smoothing: none;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+}
+
+h5 {
+  @include defaultFontStyle(500, 18, 22, $w_title);
+  -moz-font-smoothing: none;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+}
+
+h6 {
+  @include defaultFontStyle(500, 16, 20, $w_title);
+  -moz-font-smoothing: none;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  @include defaultFontStyle(500, 16, 20, $w_font);
+  -moz-font-smoothing: none;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+}
+
+p {
+  @include defaultFontStyle(400, 14, 16, $w_font);
+  -moz-font-smoothing: none;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+}

@@ -1,0 +1,81 @@
+/* Grid box */ 
+@for $i from 1 through 12 {
+	.w_col-#{$i} {
+		flex: 0 0 ($i/12) * 100%;
+		max-width: ($i/12) * 100%;
+		padding: 0 10px;
+	}
+}
+
+/* Margin and Padding */ 
+@for $i from 0 through 30 {
+	.w_m-#{$i} {
+		$margin: $i * 1px;
+		margin: $margin;
+	}
+	.w_mt-#{$i} {
+		$margin: $i * 1px;
+		margin-top: $margin;
+	}
+	.w_mr-#{$i} {
+		$margin: $i * 1px;
+		margin-right: $margin;
+	}
+	.w_mb-#{$i} {
+		$margin: $i * 1px;
+		margin-bottom: $margin;
+	}
+	.w_ml-#{$i} {
+		$margin: $i * 1px;
+		margin-left: $margin;
+	}
+	.w_my-#{$i} {
+		$margin: $i * 1px;
+		margin-top: $margin;
+		margin-bottom: $margin;
+	}
+	.w_mx-#{$i} {
+		$margin: $i * 1px;
+		margin-left: $margin;
+		margin-right: $margin;
+	}
+	.w_p-#{$i} {
+		$padding: $i * 1px;
+		padding: $padding;
+	}
+	.w_pt-#{$i} {
+		$padding: $i * 1px;
+		padding-top: $padding;
+	}
+	.w_pr-#{$i} {
+		$padding: $i * 1px;
+		padding-right: $padding;
+	}
+	.w_pb-#{$i} {
+		$padding: $i * 1px;
+		padding-bottom: $padding;
+	}
+	.w_pl-#{$i} {
+		$padding: $i * 1px;
+		padding-left: $padding;
+	}
+	.w_py-#{$i} {
+		$padding: $i * 1px;
+		padding-top: $padding;
+		padding-bottom: $padding;
+	}
+	.w_px-#{$i} {
+		$padding: $i * 1px;
+		padding-left: $padding;
+		padding-right: $padding;
+	}
+}
+
+
+// width
+@for $i from 0 through 100 {
+    .w_width-#{$i} {
+        $width: $i * 1%;
+        width: $width;
+    }
+}

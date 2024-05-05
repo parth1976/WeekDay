@@ -1,0 +1,54 @@
+/* Font Styles */
+@mixin defaultFontStyle(
+  $fontWeight: null,
+  $fontSize: null,
+  $lineHeight: null,
+  $color: null
+) {
+  font: normal $fontWeight ($fontSize) + px / ($lineHeight) + px "Lexend";
+  color: $color;
+}
+
+/* Meadia fonts */
+@mixin mediaFontStyle($fontSize: null, $lineHeight: null) {
+  font-size: ($fontSize) + px;
+  line-height: ($lineHeight) + px;
+}
+
+/* Box Shadow */
+@mixin box-shadow {
+  box-shadow: 0px 0px 10px 0px rgba(26, 72, 211, 0.3);
+}
+
+/* Background Opacity */
+@mixin backgroundOpacity($bgColor, $opacity: null) {
+  background: rgba($bgColor, $opacity);
+}
+
+/* Transition */
+@mixin transition($transition...) {
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  -ms-transition: $transition;
+  transition: $transition;
+}
+
+/* Width and height */
+@mixin square($pixels: null) {
+  width: $pixels;
+  height: $pixels;
+}
+
+/* Content - Before, After */
+@mixin content {
+  content: "";
+  position: absolute;
+}
+
+// Media Queries
+@mixin mediaQuery($point) {
+  @media screen and (max-width: $point) {
+    @content;
+  }
+}
