@@ -5,14 +5,9 @@ import './index.scss';
 
 function App() {
   return (
-    <React.Fragment className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/jobs" element={<WeekDayListing />} />
-        </Routes>
-      </BrowserRouter>
+    <React.Fragment>
+      <WeekDayListing />
     </React.Fragment>
   );
 }
-
 export default App;
