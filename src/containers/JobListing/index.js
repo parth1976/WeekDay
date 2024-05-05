@@ -156,9 +156,10 @@ const WeekDayListing = () => {
     }
   }, [filter, orginalData])
 
+
   return (
-    <div onScroll={onScroll} style={{ overflowY: 'auto', height: '620px' }}>
-      <div className='w_recruit' >
+    <React.Fragment>
+      <div onScroll={onScroll} className='w_recruit w_recruit-scroll'>
         <div className='w_container'>
           <div className='w_recruit-filter w_flex w_align-center w_flex-wrap w_p-10'>
 
@@ -180,7 +181,7 @@ const WeekDayListing = () => {
                 }}
               />
             </div>
-            <div className='w_width-20 w_mr-10'>
+            <div className='w_width-18 w_mr-10'>
               <Select
                 isMulti
                 options={noOfEmployeesOptions}
@@ -199,7 +200,7 @@ const WeekDayListing = () => {
                 }}
               />
             </div>
-            <div className='w_width-10 w_mr-10'>
+            <div className='w_width-12 w_mr-10'>
               <Select
                 isClearable
                 options={experienceOptions}
@@ -218,14 +219,14 @@ const WeekDayListing = () => {
                 }}
               />
             </div>
-            <div className='w_width-10 w_mr-10'>
+            <div className='w_width-12 w_mr-10'>
               <Select
                 options={locationOptions}
                 placeholder="Remote"
                 className='w_w-full'
               />
             </div>
-            <div className='w_width-20 w_mr-10'>
+            <div className='w_width-18 w_mr-10'>
               <Select
                 isClearable
                 options={salaryOptions}
@@ -247,8 +248,9 @@ const WeekDayListing = () => {
             <div className='w_width-10 w_mr-10'>
               <input
                 placeholder="Search For Jobs"
-                className='w_w-full'
+                className='w_search'
                 onChange={(e) => {
+                  {console.log("e" , e);}
                   if (e && e.target.value.length != 0) {
                     setFilter({
                       ...filter,
@@ -263,7 +265,7 @@ const WeekDayListing = () => {
             </div>
           </div>
 
-          <div className='w_recruit-content'>
+          <div className={`w_recruit-content ${jobListingData?.length > 0 ? '' : 'w_width-full w_flex w_align-center w_content-center'}`}>
             {jobListingData?.length > 0 ? jobListingData.map((x, i) => (
               <div className='w_recruit-content-inner'>
                 <div className='w_recruit-content-inner-label w_inline-flex w_align-center'>
@@ -293,13 +295,14 @@ const WeekDayListing = () => {
                 </div>
                 <button className='w_cp'>⚡ Easy Apply</button>
               </div>
-            )) : <div className='w_align-center'>
+            )) : <div className='w_align-center w_flex w_content-center w_recruit-content-notfound w_flex-col'>
               <img src='https://jobs.weekday.works/_next/static/media/nothing-found.4d8f334c.png' alt='Logo' />
+              <h6>No Data Found</h6>
             </div>}
           </div>
         </div>
       </div>
-    </div>
+    </React.Fragment>
   )
 }
 export default WeekDayListing;
