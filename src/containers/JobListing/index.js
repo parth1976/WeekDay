@@ -5,14 +5,15 @@ import { titleCase } from '../../Comman/utils';
 
 
 const WeekDayListing = () => {
-  const [orginalData, setOrginalData] = useState([]);
-  const [jobListingData, setjobListingData] = useState([])
-  const [offset, setOffset] = useState(0);
-  const limit = 10;
-  const [isMoreData, setIsMoreData] = useState(true);
-  const [filter, setFilter] = useState({});
-  const [jobRoleOptions, setJobRoleOptions] = useState([])
+  const [orginalData, setOrginalData] = useState([]); // set orginal data for handle filter
+  const [jobListingData, setjobListingData] = useState([]) // cards listing data for jobs 
+  const [offset, setOffset] = useState(0); // set offset here so its auto set and incremented
+  const limit = 10; // limit for get data
+  const [isMoreData, setIsMoreData] = useState(true); // when there is no data no api will be called with help of this
+  const [filter, setFilter] = useState({}); // store all the filters here 
+  const [jobRoleOptions, setJobRoleOptions] = useState([]) // dynammic options for jobs role so if in data get any other jobRole which is not in options its add dynamically 
 
+  // option for number of employees dropdown this filter is not supported because there is no number of employees in the data set
   const noOfEmployeesOptions = [
     { value: { from: 1, to: 10 }, label: '1-10' },
     { value: { from: 11, to: 20 }, label: '11-20' },
@@ -23,6 +24,7 @@ const WeekDayListing = () => {
     { value: { from: 501, to: 'infinate' }, label: '500+' }
   ]
 
+  // options for minimum expeience 
   const experienceOptions = [
     { value: 1, label: '1' },
     { value: 2, label: '2' },
@@ -36,12 +38,14 @@ const WeekDayListing = () => {
     { value: 10, label: '10' }
   ]
 
+  // options for location options this filter is not supported becase there is no option will mention in the dataset 
   const locationOptions = [
     { value: 1, label: 'Remote' },
     { value: 2, label: 'Hybrid' },
     { value: 3, label: 'In-Office' }
   ]
 
+  // option for minimum base pay dropdown
   const salaryOptions = [
     { value: 0, label: '0L' },
     { value: 10, label: '10L' },
@@ -53,12 +57,14 @@ const WeekDayListing = () => {
     { value: 70, label: '70L' },
   ]
 
+  //intially call the api for get the data and then update my offset onscroll set so this useEfeect is triggered and i get updated data
   useEffect(() => {
     if (isMoreData) {
       getJobsData();
     }
   }, [offset])
 
+  //get the intial data for jobs searching here one comman function is called which is callApi in which i need to pass method , url and data 
   const getJobsData = () => {
     const reqBody = {
       limit: limit,
@@ -88,6 +94,7 @@ const WeekDayListing = () => {
       })
   }
 
+  // this function will set the offset regarding the position of the scroll
   const onScroll = (e) => {
     const { target } = e;
     const isScrolledToBottoam = Math.abs(target.scrollHeight - target.scrollTop - target.clientHeight) < 2;
@@ -97,6 +104,7 @@ const WeekDayListing = () => {
   }
 
 
+  // this is comman function for handle all filters here i take orginal data and when filter chnages its filters from orginal data and set the filterdData to the listing
   const handleFilter = (data) => {
     let originalListingData = data ? [...data] : [...orginalData];
   
@@ -150,7 +158,7 @@ const WeekDayListing = () => {
     setjobListingData(originalListingData);
   };
   
-
+//cal handle filter when any filter is applied or removed
   useEffect(() => {
       handleFilter()
   }, [filter])

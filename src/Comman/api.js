@@ -1,8 +1,7 @@
 import axios from "axios";
 
-export const callAPI = (method = 'GET', url, data = {}, header = {}, loader = true, abortSignal) => {
+export const callAPI = (method = 'GET', url, data = {}) => {
     return new Promise((resolve, reject) => {
-        // loader && loaderActivityFn(true);
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         const request = {
@@ -17,11 +16,10 @@ export const callAPI = (method = 'GET', url, data = {}, header = {}, loader = tr
                 resolve(data?.data);
             })
             .catch(async (error) => {
-                error.response.data.message = 'Please contact admin.';
+                error.response.data.message = 'Please Try Later';
                 reject(error?.response?.data);
             })
             .finally(() => {
-                // loader && loaderActivityFn(false);
             });
     });
 };
