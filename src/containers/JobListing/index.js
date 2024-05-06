@@ -77,8 +77,12 @@ const WeekDayListing = () => {
           if (options.length > 0) {
             setJobRoleOptions(options)
           }
+          if (Object.keys(filter).length > 0) {
+            handleFilter([...orginalData , ...listing])
+          }else{
+            setjobListingData(prevData => [...prevData, ...listing]);
+          }
           setIsMoreData(res?.totalCount >= offset)
-          setjobListingData(prevData => [...prevData, ...listing]);
           setOrginalData(prevData => [...prevData, ...listing]);
         }
       })
@@ -92,69 +96,64 @@ const WeekDayListing = () => {
     }
   }
 
-  const handleFilter = () => {
-    let orginalListingData = [...orginalData];
-    if (orginalListingData.length > 0) {
-      //jobrole filter
-      if (filter?.jobRole?.length > 0) {
-        for (let i = orginalListingData.length - 1; i >= 0; i--) {
-          const job = orginalListingData[i];
+
+  const handleFilter = (data) => {
+    let originalListingData = data ? [...data] : [...orginalData];
+  
+    if (originalListingData.length > 0) {
+  
+      for (let i = originalListingData.length - 1; i >= 0; i--) {
+        const job = originalListingData[i];
+  
+        // Job Role Filter
+        if (filter?.jobRole?.length > 0) {
           let matchFound = false;
           for (let j = 0; j < filter.jobRole.length; j++) {
             const filterItem = filter.jobRole[j];
 
             if (job.jobRole === filterItem.value) {
               matchFound = true;
-              break;
+              continue;
             }
           }
           if (!matchFound) {
-            orginalListingData.splice(i, 1);
+            originalListingData.splice(i, 1);
+            continue
           }
         }
-      }
-
-      // experience filter
-      if (filter?.experience) {
-        for (let i = orginalListingData.length - 1; i >= 0; i--) {
-          const job = orginalListingData[i];
+  
+        // Experience Filter
+        if (filter?.experience) {
           if (!(job.minExp <= filter.experience.value)) {
-            orginalListingData.splice(i, 1);
+            originalListingData.splice(i, 1);
+            continue;
           }
         }
-      }
-
-      // salary filter
-      if (filter?.salary) {
-        for (let i = orginalListingData.length - 1; i >= 0; i--) {
-          const job = orginalListingData[i];
-          // Check if the minExp is not greater than the salary filter value
+  
+        // Salary Filter
+        if (filter?.salary) {
           if (!(job.minJdSalary > filter.salary.value)) {
-            // If not, remove the job object from the data array
-            orginalListingData.splice(i, 1);
+            originalListingData.splice(i, 1);
+            continue;
           }
         }
-      }
-
-      // Search Filter
-      if (filter?.searchText && filter?.searchText.length != 0) {
-        for (let i = orginalListingData.length - 1; i >= 0; i--) {
-          const job = orginalListingData[i];
+  
+        // Search Filter
+        if (filter?.searchText && filter?.searchText.length !== 0) {
           if (!job.companyName.toLowerCase().includes(filter.searchText.toLowerCase())) {
-            orginalListingData.splice(i, 1);
+            originalListingData.splice(i, 1);
+            continue;
           }
         }
       }
-      setjobListingData(orginalListingData);
-      orginalListingData = [];
     }
-  }
+    setjobListingData(originalListingData);
+  };
+  
 
   useEffect(() => {
-    if (Object.keys(filter).length > 0) {
       handleFilter()
-    }
-  }, [filter, orginalData])
+  }, [filter])
 
 
   return (
@@ -250,7 +249,6 @@ const WeekDayListing = () => {
                 placeholder="Search For Jobs"
                 className='w_search'
                 onChange={(e) => {
-                  {console.log("e" , e);}
                   if (e && e.target.value.length != 0) {
                     setFilter({
                       ...filter,
